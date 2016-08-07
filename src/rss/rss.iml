@@ -21,5 +21,9 @@
     <orderEntry type="library" exported="" name="Gradle: org.jdom:jdom2:2.0.6" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.slf4j:slf4j-api:1.7.16" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.jsoup:jsoup:1.9.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.syncthemall:boilerpipe:1.2.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: net.sourceforge.nekohtml:nekohtml:1.9.18" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: xerces:xercesImpl:2.11.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: xml-apis:xml-apis:1.4.01" level="project" />
   </component>
 </module>

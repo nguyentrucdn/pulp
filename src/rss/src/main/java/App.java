@@ -3,6 +3,8 @@ import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
+import de.l3s.boilerpipe.BoilerpipeProcessingException;
+import de.l3s.boilerpipe.extractors.ArticleExtractor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -10,6 +12,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
@@ -18,7 +21,7 @@ import java.util.List;
  * Created by thainguy on 8/7/2016.
  */
 public class App {
-    public static void main(String[] args) throws IOException, FeedException {
+    public static void main(String[] args) throws IOException, FeedException, BoilerpipeProcessingException {
         System.out.println("hello");
 
         URL url = new URL("http://vnexpress.net/rss/tin-moi-nhat.rss");
@@ -37,6 +40,7 @@ public class App {
             System.out.println("Publish Date: " + entry.getPublishedDate());
             System.out.println("Description: " + entry.getDescription().getValue());
             System.out.println(getUrlContent(entry.getLink()));
+            System.out.println(getPageContent(entry.getLink()));
             System.out.println();
 
         }
@@ -48,5 +52,11 @@ public class App {
         if (content != null)
             return content.text();
         return "Empty text!!";
+    }
+
+    private static String getPageContent(String url) throws MalformedURLException, BoilerpipeProcessingException {
+        ArticleExtractor ae = new ArticleExtractor();
+        String content = ae.getText(new URL(url));
+        return content;
     }
 }
