@@ -1,3 +1,5 @@
 rootProject.name = 'pulp'
 
-include ":rss"
+include "rss"
+include 'nlp'
+

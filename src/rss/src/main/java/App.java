@@ -1,3 +1,4 @@
+import com.pulp.TextRank;
 import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
@@ -25,6 +26,7 @@ public class App {
         System.out.println("hello");
 
         URL url = new URL("http://vnexpress.net/rss/tin-moi-nhat.rss");
+        //URL url = new URL("http://www.bongda.com.vn/feed.rss");
         HttpURLConnection httpcon = (HttpURLConnection)url.openConnection();
         // Reading the feed
         SyndFeedInput input = new SyndFeedInput();
@@ -39,8 +41,8 @@ public class App {
             System.out.println("Author: " + entry.getAuthor());
             System.out.println("Publish Date: " + entry.getPublishedDate());
             System.out.println("Description: " + entry.getDescription().getValue());
-            System.out.println(getUrlContent(entry.getLink()));
-            System.out.println(getPageContent(entry.getLink()));
+            //System.out.println(getUrlContent(entry.getLink()));
+            System.out.println("Summary: " + getPageContent(entry.getLink()));
             System.out.println();
 
         }
@@ -57,6 +59,8 @@ public class App {
     private static String getPageContent(String url) throws MalformedURLException, BoilerpipeProcessingException {
         ArticleExtractor ae = new ArticleExtractor();
         String content = ae.getText(new URL(url));
-        return content;
+        TextRank rank = new TextRank();
+        return rank.summary(content);
+        //return content;
     }
 }
